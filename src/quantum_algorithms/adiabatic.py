@@ -5,6 +5,58 @@ from scipy.sparse import kron, identity, csc_matrix
 from qutip import qeye, sigmax, tensor, sigmay, sigmaz
 from qutip import * 
 
+
+def initial_state(N):
+    """Ground state of H0 (all spins along +x)"""
+    H0 = H0_transverse(N)
+    return H0.groundstate()[1]   # returns the ground state vector
+
+def build_operator(pauli, position, N):
+    """ """
+    from scipy.sparse import identity, kron
+    I = csr_matrix(np.eye(2))
+    ops = [I] * N
+    ops[position] = pauli
+    result = ops[0]
+    for op in ops[1:]:
+        result = kron(result, op, format='csr')
+    return result
+
+def build_two_qubit_operator(pauli1, pauli2, i, j, N):
+    from scipy.sparse import identity, kron
+    I = csr_matrix(np.eye(2))
+    ops = [I] * N
+    ops[i] = pauli1
+    ops[j] = pauli2
+    result = ops[0]
+    for op in ops[1:]:
+        result = kron(result, op, format='csr')
+    return result
+
+def build_H0(N):
+    X = csr_matrix(np.array([[0, 1], [1, 0]]))
+    H0 = csr_matrix((2**N, 2**N))
+    for i in range(N):
+        H0 -= build_operator(X, i, N)
+    return H0
+
+def build_H1(N, Jz=2*np.pi, h=0.5*2*np.pi):
+    Z = csr_matrix(np.array([[1, 0], [0, -1]]))
+    H1 = csr_matrix((2**N, 2**N))
+    for i in range(N - 1):
+        H1 += 0.5 * Jz * build_two_qubit_operator(Z, Z, i, i + 1, N)
+    for i in range(N):
+        H1 -= 0.5 * h * build_operator(Z, i, N)
+    return H1
+
+def initial_state(N):
+    plus = np.array([[1], [1]]) / np.sqrt(2)
+    state = plus
+    for _ in range(N - 1):
+        state = np.kron(state, plus)
+    return state[:, 0]
+    
+    
 def H0_transverse(N):
     """Transverse field Hamiltonian H0 = -sum σx_i"""
     sx_list = []
@@ -72,7 +124,7 @@ def lam(t, args):
 
 def simulate_dynamics(H0, H1, times, t_final):
     """Time evolution under H(t) using mesolve."""
-    psi0 = H0.groundstate()[1]
+    psi0 = build_H0.groundstate()[1]
     H = [H0, [H1, lam]]
     args = {'t_final': t_final}
     result = mesolve(H, psi0, times, c_ops=[], e_ops=[], args=args) 
@@ -98,5 +150,5 @@ def run_simulation(schedule_func, schedule_name):
     mesolve(H_td, psi0, times, c_ops=[], e_ops=[], args={'T': T})  # evolution
     lam_vals = np.array([schedule_func(t, T) if schedule_name != "Optimized" else schedule_func(t, T, min_gap_t) for t in times])
     plt.plot(times, lam_vals, label=schedule_name)
-    return lam_vals
+    return lam_vals 
 

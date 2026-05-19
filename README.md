@@ -1,6 +1,11 @@
 
 
-# Quantum Algorithms
+
+[![CI](https://github.com/Abiyzelalem27/quantum_algorithms/actions/workflows/python_CI.yml/badge.svg)](https://github.com/Abiyzelalem27/quantum_algorithms/actions/workflows/python_CI.yml)
+
+[![codecov](https://codecov.io/github/Abiyzelalem27/quantum_algorithms/graph/badge.svg)](https://codecov.io/github/Abiyzelalem27/quantum_algorithms)
+
+# Quantum Algorithms 
 
 This repository contains implementations and simulations of several **fundamental quantum algorithms** and **quantum system simulations** using Python and scientific quantum computing libraries. It explores how quantum mechanical principles such as **superposition**, **interference**, and **entanglement** enable computational advantages over classical algorithms, allowing certain problems to be solved more efficiently.
 
