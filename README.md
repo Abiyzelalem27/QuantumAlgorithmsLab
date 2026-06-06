@@ -65,23 +65,33 @@ Numerical simulations of **Rydberg atom systems**, which are an important physic
 # Repository Structure
 
 ```
-Quantum_Algorithms
+QuantumAlgorithmsLab/
 │
 ├── src/
 │   └── quantum_algorithms/
-│
-├── notebooks/
-│   ├── deutsch_jozsa.ipynb
-│   ├── DJA_with_error.ipynb
-│   ├── shor_QFT_PE.ipynb
-│   ├── Adiabatic_state_preparation.ipynb
-│   ├── Rydberg_atoms.ipynb
-│   └── Simulating_noisy.ipynb
+│       ├── __init__.py
+│       ├── adiabatic.py
+│       ├── deutsch_jozsa.py
+│       ├── operators.py
+│       ├── rydberg.py
+│       └── shor_algor.py
 │
 ├── tests/
+│   ├── test_dja.py
+│   └── test_op.py
+│
+├── notebooks/
+│   ├── Adiabatic_state_preparation.ipynb
+│   ├── DJA_with_error.ipynb
+│   ├── deutsch_jozsa.ipynb
+│   ├── Rydberg_atoms.ipynb
+│   └── shor_QFT_PE.ipynb
+│
 ├── README.md
 ├── CHANGELOG.md
-└── pyproject.toml
+├── LICENSE
+├── pyproject.toml
+└── .gitignore
 ```
 
 ---
@@ -111,7 +121,7 @@ pip install numpy matplotlib qutip scipy
 
 ---
 
-# Author
+# Author 
 
 **Abiy Zelalem Tegegne** 
 
