@@ -7,17 +7,11 @@
 
 # Quantum Algorithms 
 
-This repository contains implementations and simulations of several **fundamental quantum algorithms** and **quantum system simulations** using Python and scientific quantum computing libraries. It explores how quantum mechanical principles such as **superposition**, **interference**, and **entanglement** enable computational advantages over classical algorithms, allowing certain problems to be solved more efficiently.
+This repository contains implementations and simulations of quantum algorithms using Python and scientific quantum computing libraries. It explores how quantum mechanical principles such as **superposition**, **interference**, and **entanglement** enable computational advantages over classical algorithms, allowing certain problems to be solved more efficiently.
 
 # Implemented Quantum Algorithms
 
-## 1. Deutsch Algorithm
-The **Deutsch Algorithm** determines whether a function `f(x)` is **constant** or **balanced** using a single quantum query to an oracle. It represents one of the earliest demonstrations of **quantum computational advantage**.
-
-## 2. Deutsch–Jozsa Algorithm
-The **Deutsch–Jozsa Algorithm** generalizes the Deutsch algorithm to functions with **n-bit inputs**. It determines whether a function is **constant or balanced** using **one quantum evaluation**, while a classical algorithm may require exponentially many queries.
-
-## 3. Grover Search Algorithm
+## 1. Grover Search Algorithm
 **Grover's Algorithm** searches for a marked element in an **unsorted database** and provides a **quadratic speedup** compared to classical search algorithms.
 
 Classical complexity:
@@ -30,13 +24,13 @@ Quantum complexity:
 O(√N)
 ```
 
-## 4. Quantum Fourier Transform (QFT)
+## 2. Quantum Fourier Transform (QFT)
 The **Quantum Fourier Transform (QFT)** is the quantum analogue of the classical discrete Fourier transform. It is a key component used in many quantum algorithms.
 
-## 5. Quantum Phase Estimation (QPE)
+## 3. Quantum Phase Estimation (QPE)
 The **Quantum Phase Estimation algorithm** determines the **phase (eigenvalue)** associated with an eigenvector of a unitary operator. It is a central subroutine used in many advanced quantum algorithms.
 
-## 6. Shor's Factoring Algorithm
+## 4. Shor's Factoring Algorithm
 **Shor’s Algorithm** efficiently factors large integers using quantum computation. It combines **Quantum Phase Estimation** and the **Quantum Fourier Transform** to achieve an **exponential speedup** over classical factoring algorithms.
 
 ---
